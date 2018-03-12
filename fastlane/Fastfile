@@ -1,0 +1,57 @@
+# This file contains the fastlane.tools configuration
+# You can find the documentation at https://docs.fastlane.tools
+#
+# For a list of all available actions, check out
+#
+#     https://docs.fastlane.tools/actions
+#
+
+# Uncomment the line if you want fastlane to automatically update itself
+# update_fastlane
+
+default_platform(:android)
+
+platform :android do
+  desc "Runs all the tests"
+  lane :test do
+    gradle(task: "test")
+  end
+
+  desc "Submit a new Beta Build to Crashlytics Beta"
+  lane :beta do
+    gradle(task: "clean assembleRelease")
+    crashlytics
+  
+    # sh "your_script.sh"
+    # You can also use other beta testing services here
+  end
+
+  desc "Deploy a new version to the Google Play"
+  lane :deploy do
+    gradle(task: "clean assembleRelease") 
+  end
+end
+
+lane :playstore do 
+gradle(task: 'clean')
+gradle(
+task: 'assemble',
+build_type: 'Release',
+  properties: {
+        "android.injected.signing.store.file" => "C:\\Users\\bruno.t0655\\Documents\\teste.jks",
+        "android.injected.signing.store.password" => "testetesteteste",
+        "android.injected.signing.key.alias" => "key0",
+        "android.injected.signing.key.password" => "testetesteteste"}
+) 
+upload_to_play_store(track: 'beta')
+slack(
+  message: "App successfully released!",
+  channel: "#mobile_tests",
+  success: true,
+  username: "Funfou",
+  icon_url: "https://s3-us-west-2.amazonaws.com/slack-files2/avatars/2018-03-12/328057803537_b9215fa30d748dfe5ecf_72.png",
+  slack_url: "https://hooks.slack.com/services/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"
+)
+end
+
+ 
