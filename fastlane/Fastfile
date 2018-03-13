@@ -48,7 +48,7 @@ slack(
   message: "App successfully released!",
   channel: "#mobile_tests",
   success: true,
-  username: "Funfou",
+  username: "Comiteiro",
   icon_url: "https://s3-us-west-2.amazonaws.com/slack-files2/avatars/2018-03-12/328057803537_b9215fa30d748dfe5ecf_72.png",
   slack_url: "https://hooks.slack.com/services/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"
 )
