@@ -5,18 +5,16 @@ repositories {
     maven { url 'https://maven.fabric.io/public' }
 }
 android {
-    compileSdkVersion 26
+    compileSdkVersion 27
     defaultConfig {
         applicationId "com.xpi.brunot0655.testes"
         minSdkVersion 15
-        targetSdkVersion 26
+        targetSdkVersion 27
         versionCode 3
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
-    lintOptions {
-        abortOnError false
-    }
+
     buildTypes {
         release {
             minifyEnabled false
@@ -36,23 +34,22 @@ buildscript {
 
         // We recommend changing it to the latest version from our changelog:
         // https://docs.fabric.io/android/changelog.html#fabric-gradle-plugin
-        classpath 'io.fabric.tools:gradle:1.+'
+        classpath 'io.fabric.tools:gradle:1.25.1'
     }
 }
 
-
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation 'com.android.support:appcompat-v7:26.1.0'
+    implementation 'com.android.support:appcompat-v7:27.1.0'
     implementation 'com.android.support.constraint:constraint-layout:1.0.2'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.1'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
     def appCenterSdkVersion = '1.4.0'
-    compile "com.microsoft.appcenter:appcenter-analytics:${appCenterSdkVersion}"
-    compile "com.microsoft.appcenter:appcenter-crashes:${appCenterSdkVersion}"
-    compile "com.microsoft.appcenter:appcenter-push:${appCenterSdkVersion}"
-    compile('com.crashlytics.sdk.android:crashlytics:2.9.1@aar') {
+    implementation "com.microsoft.appcenter:appcenter-analytics:${appCenterSdkVersion}"
+    implementation "com.microsoft.appcenter:appcenter-crashes:${appCenterSdkVersion}"
+    implementation "com.microsoft.appcenter:appcenter-push:${appCenterSdkVersion}"
+    implementation('com.crashlytics.sdk.android:crashlytics:2.9.1@aar') {
         transitive = true;
     }
 }
