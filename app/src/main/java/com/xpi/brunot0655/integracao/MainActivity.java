@@ -15,8 +15,7 @@ import com.microsoft.appcenter.crashes.Crashes;
 import com.microsoft.appcenter.push.Push;
 
 public class MainActivity extends AppCompatActivity {
-
-    @Override
+     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Fabric.with(this, new Crashlytics());
