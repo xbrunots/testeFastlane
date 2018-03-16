@@ -10,11 +10,19 @@ android {
         applicationId "com.xpi.brunot0655.testes"
         minSdkVersion 15
         targetSdkVersion 27
-        versionCode 3
-        versionName "1.0"
+        versionCode getVersionCodeTimestamp()
+        versionName "1.0.${getVersionCodeTimestamp()}"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
-
+    signingConfigs {
+        release {
+            v2SigningEnabled true
+            keyAlias '__keyalias__'
+            storeFile file('../app/keystore/key.jks')
+            keyPassword '__keypassword__'
+            storePassword '__storepassword__'
+        }
+    }
     buildTypes {
         release {
             minifyEnabled false
@@ -36,6 +44,13 @@ buildscript {
         // https://docs.fabric.io/android/changelog.html#fabric-gradle-plugin
         classpath 'io.fabric.tools:gradle:1.25.1'
     }
+}
+
+static def getVersionCodeTimestamp() {
+    def date = new Date()
+    def formattedDate = date.format('yyMMddHHmm')
+    def code = formattedDate.toInteger()
+    return code
 }
 
 dependencies {
